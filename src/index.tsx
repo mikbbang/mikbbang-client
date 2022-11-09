@@ -69,7 +69,7 @@ export class WebSocketLink extends ApolloLink {
 
 export function getWSLink(): WebSocketLink {
     const link = new WebSocketLink({
-        url: 'wss://truedu.kr/graphql',
+        url: 'wss://api.truedu.kr/graphql',
         connectionParams: () => {
             const session = getSession();
             if (!session) {
@@ -85,7 +85,7 @@ export function getWSLink(): WebSocketLink {
 }
 
 const httpLink = createHttpLink({
-    uri: 'https://truedu.kr/graphql',
+    uri: 'https://api.truedu.kr/graphql',
 });
 
 const wsLink = getWSLink();

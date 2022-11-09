@@ -1,1 +1,1 @@
-export const API_URL = 'https://truedu.kr/graphql';
+export const API_URL = 'https://api.truedu.kr/graphql';
