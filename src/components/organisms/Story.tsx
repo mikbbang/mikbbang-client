@@ -27,6 +27,9 @@ ${props => props.isBigStory ?
         @media screen and (max-width: 1300px) {
             width: 200px;
         }
+        @media screen and (max-width: 400px) {
+            width: 130px;
+        }
         `
         :
         ''
@@ -51,6 +54,9 @@ ${props => props.isBigStory ?
         `
         @media screen and (max-width: 1300px) {
             width: calc(100% - 200px);
+        }
+        @media screen and (max-width: 400px) {
+            width: calc(100% - 130px);
         }
         `
         :
@@ -101,6 +107,9 @@ position: absolute;
 top: ${props => props.isBigStory ? '30px' : '20px'};
 
 font-size: ${props => props.isBigStory ? '20px' : '12px'};
+
+padding-right: 20px;
+box-sizing: border-box;
 
 ${ props => props.isBigStory ?
         `@media screen and (max-width: 800px) {

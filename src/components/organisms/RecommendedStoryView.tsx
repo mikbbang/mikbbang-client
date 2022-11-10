@@ -17,7 +17,11 @@ const StoryContainer = styled.div`
 height: 600px;
 
 @media screen and (max-width: 1300px) {
-    height: 300px;
+    height: 280px;
+}
+
+@media screen and (max-width: 400px) {
+    height: 170px;
 }
 `;
 
