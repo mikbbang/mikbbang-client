@@ -5,12 +5,16 @@ import StoryList from './StoryList';
 
 
 
-const SubscribedStoriesContainer = styled.div`
+const OuterContainer = styled.div`
 width: 100%;
-padding: 0 5%;
-box-sizing: border-box;
+display: flex;
+justify-content: center;
 `;
-const SubscribedStoriesTitle = styled(H2Title)``;
+const Container = styled.div`
+width: 90%;
+max-width: 1700px;
+`;
+const Title = styled(H2Title)``;
 
 const sampleStory = {
     id: 'sui',
@@ -27,10 +31,12 @@ const sampleStory = {
 
 function SubscribedStories(): JSX.Element {
     return (
-        <SubscribedStoriesContainer>
-            <SubscribedStoriesTitle>구독한 스토리</SubscribedStoriesTitle>
-            <StoryList stories={new Array(20).fill(sampleStory).map(obj => ({ ...obj, id: Math.random() + 'sui' }))}/>
-        </SubscribedStoriesContainer>
+        <OuterContainer>
+            <Container>
+                <Title>구독한 스토리</Title>
+                <StoryList stories={new Array(20).fill(sampleStory).map(obj => ({ ...obj, id: Math.random() + 'sui' }))}/>
+            </Container>
+        </OuterContainer>
     );
 }
 

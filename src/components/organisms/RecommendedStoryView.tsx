@@ -3,16 +3,20 @@ import styled from 'styled-components';
 import { H2Title } from '../atoms/styled';
 import Story from './Story';
 
-const RecommendedStoryViewContainer = styled.div`
+const OuterContainer = styled.div`
 width: 100%;
-padding: 0 5%;
-box-sizing: border-box;
+display: flex;
+justify-content: center;
+`;
+const Container = styled.div`
+width: 90%;
+max-width: 1700px;
 `;
 
-const RecommendedStoryViewStoryContainer = styled.div`
+const StoryContainer = styled.div`
 height: 600px;
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1300px) {
     height: 300px;
 }
 `;
@@ -34,12 +38,14 @@ const RecommendedStoryViewTitle = styled(H2Title)``;
 
 function RecommendedStoryView(): JSX.Element {
     return (
-        <RecommendedStoryViewContainer>
-            <RecommendedStoryViewTitle>추천 스토리</RecommendedStoryViewTitle>
-            <RecommendedStoryViewStoryContainer>
-                <Story story={sampleStory} styles={{ leftSideSize: '30%', isBigStory: true }}/>
-            </RecommendedStoryViewStoryContainer>
-        </RecommendedStoryViewContainer>
+        <OuterContainer>
+            <Container>
+                <RecommendedStoryViewTitle>추천 스토리</RecommendedStoryViewTitle>
+                <StoryContainer>
+                    <Story story={sampleStory} styles={{ isBigStory: true }}/>
+                </StoryContainer>
+            </Container>
+        </OuterContainer>
     );
 }
 

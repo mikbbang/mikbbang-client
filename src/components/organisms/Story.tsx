@@ -14,13 +14,23 @@ overflow: hidden;
 filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.1));
 `;
 
-const StoryLeftDiv = styled.div<{ leftSideSize: string }>`
-width: ${props => props.leftSideSize};
+const StoryLeftDiv = styled.div<{ isBigStory: boolean }>`
+width: ${props => props.isBigStory ? '400px' : '130px'};
 height: 100%;
 display: flex;
 align-items: center;
 justify-content: center;
 z-index: 2;
+
+${props => props.isBigStory ?
+        `
+        @media screen and (max-width: 1300px) {
+            width: 200px;
+        }
+        `
+        :
+        ''
+}
 `;
 const CharacterImage = styled.div<{ src: string }>`
 background-image: url(${props => props.src});
@@ -31,11 +41,21 @@ width: 70%;
 border-radius: 10px;
 `;
 
-const StoryRightDiv = styled.div<{ leftSideSize: string }>`
-width: calc(100% - ${props => props.leftSideSize});
+const StoryRightDiv = styled.div<{ isBigStory: boolean }>`
+width: calc(100% - ${props => props.isBigStory ? '400px' : '130px'});
 height: 100%;
 position: relative;
 z-index: 2;
+
+${props => props.isBigStory ?
+        `
+        @media screen and (max-width: 1300px) {
+            width: calc(100% - 200px);
+        }
+        `
+        :
+        ''
+}
 `;
 
 const TalkWhiteBarDiv = styled.div`
@@ -121,11 +141,10 @@ function Talk({ name, message, isBigStory }: { name: string, message: string, is
 
 function Story({
     story,
-    styles: { leftSideSize, isBigStory }
+    styles: { isBigStory }
 }: {
     story: Data.Story,
     styles: {
-        leftSideSize: string,
         isBigStory: boolean
     }
 }): JSX.Element {
@@ -137,10 +156,10 @@ function Story({
 
     return (
         <StoryContainerDiv onClick={onClick}>
-            <StoryLeftDiv leftSideSize={leftSideSize}>
+            <StoryLeftDiv isBigStory={isBigStory}>
                 <CharacterImage src={story.characterImageSrc}/>
             </StoryLeftDiv>
-            <StoryRightDiv leftSideSize={leftSideSize}>
+            <StoryRightDiv isBigStory={isBigStory}>
                 <Talk name={story.characterName} message={story.talks[currentTalkIndex].message} isBigStory={isBigStory}/>
             </StoryRightDiv>
             <TalkWhiteBarDiv/>

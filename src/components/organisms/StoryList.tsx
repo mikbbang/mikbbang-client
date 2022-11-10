@@ -24,7 +24,7 @@ function StoryList({ stories }: { stories: Data.Story[] }): JSX.Element {
                 stories.map(story => {
                     return (
                         <StoryContainer key={story.id}>
-                            <Story styles={{ leftSideSize: '130px', isBigStory: false }} story={story}/>
+                            <Story styles={{ isBigStory: false }} story={story}/>
                         </StoryContainer>
                     );
                 })
