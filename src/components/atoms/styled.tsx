@@ -131,3 +131,11 @@ export const Title1Div = styled.div`
     color: ${props => props.theme.colors.textLight};
     margin-bottom: 20px;
 `;
+
+export const H2Title = styled.h2`
+text-align: left;
+margin: 0;
+margin-bottom: 20px;
+font-size: 16px;
+font-family: 'Noto Sans';
+`;
