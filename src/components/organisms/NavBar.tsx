@@ -1,30 +1,20 @@
 import {
-    memo,
-    useCallback,
-    useEffect,
-    useState} from 'react';
-import { 
-    Link,
-    useNavigate
-} from 'react-router-dom';
+    memo
+} from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { MEDIA_MAX_WIDTH } from '../../constants/css';
-import useCurrentUser from '../../hooks/useCurrentUser';
-import useDebounce from '../../hooks/useDebounce';
 import useIsLoggedIn from '../../hooks/useIsLoggedIn';
-import useWindowSize from '../../hooks/useWindowSize';
-import MenuButton from '../atoms/MenuButton';
-import { PaddingDiv } from '../atoms/styled';
+
+import ProfileButton from '../atoms/ProfileButton';
 
 const NavBarOuterDiv = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 20px;
-    height: 60px;
+    padding: 0px 40px;
+    height: 50px;
     width: 100%;
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: #f5f5f5;
     box-sizing: border-box;
 
     position: relative;
@@ -37,198 +27,73 @@ const NavBarDiv = styled.div`
 
     width: 500px;
     height: 100%;
-    padding: 0px 20px;
 `;
 
 const NavBarLeftDiv = styled(NavBarDiv)`
     justify-content: flex-start;
+    padding: 0;
 `;
 
 const NavBarRightDiv = styled(NavBarDiv)`
     justify-content: flex-end;
+    padding: 0;
 `;
 
 const NavBarLogo = styled.img`
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 `;
 
-const NavBarButton = styled.button`
-    height: 100%;
-    min-width: 100px;
+const MenuLink = styled(Link)`
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 4px 10px;
     border: none;
-    font-size: 15px;
-    padding: 0px 10px;
-
-    background-color: rgba(255, 255, 255, 0);
-    color: ${props => props.theme.colors.backgroundInverse};
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
 
     &:hover {
-        color: ${props => props.theme.colors.buttonHover};
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: #ddd;
     }
 
-    &:active {
-        color: ${props => props.theme.colors.buttonActive};
-        background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    @media (max-width: ${MEDIA_MAX_WIDTH}px) {
-        height: 50px;
-        width: 100%;
-
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        padding: 0px 40px;
-    }
+    transition: background-color 0.3s ease-in-out;
 `;
 
-const UserInfoDiv = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 100%;
-    
-    @media (max-width: ${MEDIA_MAX_WIDTH}px) {
-        height: 50px;
-        width: 100%;
-    }
-`;
-
-function LeftNavBarButtons(): JSX.Element {
-    return (
-        <>
-            <NavBarButton>
-                Button1
-            </NavBarButton>
-            <NavBarButton>
-                Button2
-            </NavBarButton>
-            <NavBarButton>
-                Button3
-            </NavBarButton>
-        </>
-    );
-}
-
-function RightNavbarButtons(): JSX.Element {
-    const navigate = useNavigate();
-
-    const handleLoginClick = useCallback(() => {
-        navigate('/login');
-    }, [navigate]);
-
-    const handleLogoutClick = useCallback(() => {
-        navigate('/logout');
-    }, [navigate]);
-
+function NavBar(): JSX.Element {
     const isLoggedIn = useIsLoggedIn();
-    const user = useCurrentUser();
-    return (
-        <>
-            <UserInfoDiv>
-                { !isLoggedIn ?  (
-                    <NavBarButton onClick={handleLoginClick}>
-                        Sign In
-                    </NavBarButton>
-                ) : (
-                    <NavBarButton onClick={handleLogoutClick}>
-                        {user?.username ?? '...'}
-                    </NavBarButton>
-                ) }
-            </UserInfoDiv>
-        </>
-    );
-}
-
-function PcNavBar(): JSX.Element {
-    return (
-        <NavBarOuterDiv>
-            <NavBarLeftDiv>
-                <Link to={'/'}>
-                    <NavBarLogo/>
-                </Link>
-                <LeftNavBarButtons/>
-            </NavBarLeftDiv>
-            <NavBarRightDiv>
-                <RightNavbarButtons/>
-            </NavBarRightDiv>
-        </NavBarOuterDiv>
-    );
-}
-
-interface MobileNavBarPanelDivProps {
-    isOpen: boolean;
-}
-
-const MobileNavBarPanelDiv = styled.div<MobileNavBarPanelDivProps>`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 60px;
-    width: 100%;
-
-    background-color: ${props => props.theme.colors.secondary};
-    transition: 0.3s;
-    transform: ${props => props.isOpen ? 'translateY(0%)' : 'translateY(-100%)'};
-`;
-
-function MobileNavBar(): JSX.Element {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const handleClick = useCallback(() => {
-        setIsOpen(!isOpen);
-    }, [isOpen]);
 
     return (
         <>
             <NavBarOuterDiv>
                 <NavBarLeftDiv>
-                    <NavBarLogo />
+                    <NavBarLogo src={'/static/Logo.svg'}/>
                 </NavBarLeftDiv>
                 <NavBarRightDiv>
-                    <MenuButton isOpen={isOpen} onClick={handleClick}/>
+                    <ProfileButton>
+                        {isLoggedIn ? (
+                            <>
+                                <MenuLink to={'/logout'}>로그아웃</MenuLink>
+                                <MenuLink to={'/subscribed'}>구독리스트</MenuLink>
+                                <MenuLink to={'/mypage'}>프로필 관리</MenuLink>
+                            </>
+                        ) : (
+                            <>
+                                <MenuLink to={'/login'}>로그인</MenuLink>
+                                <MenuLink to={'/register'}>회원가입</MenuLink>
+                            </>
+                        )}
+                    </ProfileButton>
                 </NavBarRightDiv>
             </NavBarOuterDiv>
-            <MobileNavBarPanelDiv isOpen={isOpen}>
-                <LeftNavBarButtons/>
-                <PaddingDiv height='30px'/>
-                <RightNavbarButtons/>
-            </MobileNavBarPanelDiv>
         </>
     );
 }
 
-const PcNavBarMemo = memo(PcNavBar);
-const MobileNavBarMemo = memo(MobileNavBar);
+const NavBarMemo = memo(NavBar);
 
-function NavBar(): JSX.Element {
-    const [isMobile, setIsMobile] = useState(false);
-    const [debouncedIsMobile, setDebouncedIsMobile] = useState(false);
-    const windowSize = useWindowSize();
-
-    useDebounce(() => {
-        setDebouncedIsMobile(isMobile);
-    }, 500, [isMobile, setDebouncedIsMobile]);
-
-    useEffect(() => {
-        setDebouncedIsMobile(window.innerWidth < MEDIA_MAX_WIDTH);
-    }, []);
-
-    useEffect(() => {
-        setIsMobile(windowSize.width < MEDIA_MAX_WIDTH);
-    }, [windowSize.width]);
-
-    return (
-        <>
-            {!debouncedIsMobile ? <PcNavBarMemo /> : <MobileNavBarMemo />}
-        </>
-    );
-}
-
-export default NavBar;
+export default NavBarMemo;
