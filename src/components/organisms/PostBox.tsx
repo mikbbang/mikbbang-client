@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { PaddingDiv } from '../atoms/styled';
+import ImageSelectView from './ImageSelectView';
 
 const PostBoxContainerDiv = styled.div`
     display: flex;
@@ -88,6 +89,7 @@ function PostBox(): JSX.Element {
             <PostBoxInnerDiv>
                 <PostBoxTopDiv>
                     <PostBoxTextArea placeholder="무슨 생각을 하고 계신가요?"></PostBoxTextArea>
+                    <ImageSelectView/>
                 </PostBoxTopDiv>
                 <PostBoxBottomDiv>
                     <HorizontalLineDiv />
