@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import {
-    OuterFlexDiv
+    OuterFlexDiv, PaddingDiv
 } from '../components/atoms/styled';
 import NavBar from '../components/organisms/NavBar';
 import RecommendedStoryView from '../components/organisms/RecommendedStoryView';
@@ -19,8 +19,9 @@ function Main(): JSX.Element {
         <MainFlexDiv>
             <NavBar/>
             <PostBox/>
+            <PaddingDiv height='50px'/>
             <RecommendedStoryView/>
-            <div style={{ height: '50px' }}/>
+            <PaddingDiv height='50px'/>
             <SubscribedStories/>
         </MainFlexDiv>
     );
