@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 
 import App from './App';
 import JwtTokenRefresher from './components/organisms/JwtTokenRefresher';
+import { API_URL } from './constants/apolloClient';
 import { DARK_THEME, LIGHT_THEME } from './constants/css';
 import { JWT_LOCAL_STORAGE_KEY } from './constants/localStorage';
 import { AuthProvider } from './contexts/AuthContext';
@@ -84,9 +85,7 @@ export function getWSLink(): WebSocketLink {
     return link;
 }
 
-const httpLink = createHttpLink({
-    uri: 'https://api.truedu.kr/graphql',
-});
+const httpLink = createHttpLink({ uri: API_URL });
 
 const wsLink = getWSLink();
 
