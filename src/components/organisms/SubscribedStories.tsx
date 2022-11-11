@@ -47,7 +47,7 @@ const sampleStory3 = {
     characterName: '하카세',
     talks: [
         { message: '사메(サメ)' },
-        { message: '사메(サメ)' },
+        { message: '사메(サメ) ' },
         { message: '사메사메(サメサメ)' },
         { message: '사메(サメ)' }
     ]
