@@ -6,8 +6,8 @@ export const LIGHT_THEME = {
         // primary: '#fdfdfd',
         // secondary: '#eee',
         // tertiary: '#f5f5f5',
-        background: '#F8F9FD',
-        secondaryBG: '#FFFFFF',
+        background: '#F5F5F5',
+        secondaryBG: '#D9D9D9',
         primary: '#5A81FA',
         secondary: '#2B308C',
         tertiary: '#9CB3FC',
@@ -26,13 +26,13 @@ export const LIGHT_THEME = {
         warning: '#ffc107',
         info: '#7A86B6',
 
-        button: '#00bcd4',
-        buttonHover: '#00b0d0',
-        buttonActive: '#0097a7',
+        button: '#EC959E',
+        buttonHover: '#F5B5B9',
+        buttonActive: '#F9C9C9',
 
-        link: '#00bcd4',
-        linkHover: '#00b0d0',
-        linkActive: '#0097a7'
+        link: '#B3B3B3',
+        linkHover: '#666',
+        linkActive: '#333'
     }
 };
 

@@ -63,7 +63,8 @@ export const TextInput1 = styled.input`
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 0 10px;
-    border-radius: 30px;
+    border-radius: 15px;
+    border: 1px solid ${props => props.theme.colors.textLighter};
 `;
 
 export const Button1 = styled.button`
@@ -74,7 +75,7 @@ export const Button1 = styled.button`
     color: ${props => props.theme.colors.textLightest};
     font-size: 15px;
     padding: 0;
-    border-radius: 30px;
+    border-radius: 15px;
 
     &:hover {
         background-color: ${props => props.theme.colors.buttonHover};

@@ -26,7 +26,7 @@ import usePasswordValidator from '../hooks/text-validators/usePasswordValidator'
 import useRequiredValidator from '../hooks/text-validators/useRequiredValidator';
 
 const RegisterButton = styled(Button1)`
-    margin-top: 50px;
+    margin-top: 30px;
 `;
 
 const LoginLink = styled(StyledLink)`

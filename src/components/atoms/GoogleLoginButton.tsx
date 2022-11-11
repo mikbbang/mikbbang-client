@@ -7,14 +7,14 @@ import getScript from '../../utilities/getScript';
 import { Button1 } from './styled';
 
 const SigninWithGoogleButton = styled(Button1)`
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.button};
 
     &:hover {
-        background-color: ${props => props.theme.colors.secondary};
+        background-color: ${props => props.theme.colors.buttonHover};
     }
 
     &:active {
-        background-color: ${props => props.theme.colors.tertiary};
+        background-color: ${props => props.theme.colors.buttonActive};
     }
 
     margin-bottom: 10px;
